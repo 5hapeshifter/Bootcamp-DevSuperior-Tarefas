@@ -6,15 +6,14 @@ import com.devsuperior.primeirocapitulocrud.repositories.ClientRepository;
 import com.devsuperior.primeirocapitulocrud.services.exceptions.ClientNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityNotFoundException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.NoSuchElementException;
 
 @Service
@@ -24,12 +23,9 @@ public class ClientService {
     private ClientRepository clientRepository;
 
     @Transactional(readOnly = true)
-    public List<ClientDTO> findAllClients() {
-        List<ClientDTO> list = new ArrayList<>();
-        for (Client client : clientRepository.findAll()){
-            list.add(new ClientDTO(client));
-        }
-        return list;
+    public Page<ClientDTO> findAllPaged(PageRequest pageRequest) {
+        Page<Client> list = clientRepository.findAll(pageRequest);
+        return list.map(x -> new ClientDTO(x));
     }
     @Transactional(readOnly = true)
     public ClientDTO findById(Long id) {
