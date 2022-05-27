@@ -1,5 +1,7 @@
 package com.devsuperior.bds04.entities;
 
+import com.devsuperior.bds04.dto.CityDTO;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,6 +30,11 @@ public class City {
 	public City(Long id, String name) {
 		this.id = id;
 		this.name = name;
+	}
+
+	public City(CityDTO dto) {
+		this.id = dto.getId();
+		this.name = dto.getName();
 	}
 
 	public Long getId() {
