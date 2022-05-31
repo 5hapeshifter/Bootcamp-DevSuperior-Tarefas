@@ -24,7 +24,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     private JwtTokenStore tokenStore;
 
     // rota que sera publica para acessar
-    private static final String[] PUBLIC = {"/oauth/token", "/h2-console/**","/cities/**", "/events/**"};
+    private static final String[] PUBLIC = {"/oauth/token", "/h2-console/**"};
 
     // rota com nivel de acesso
     private static final String[] CLIENT_POST = {"/events/**"};
@@ -46,7 +46,8 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
         http.authorizeRequests()
                 .antMatchers(PUBLIC).permitAll()
-                .antMatchers(HttpMethod.POST, CLIENT_POST).hasAnyRole("CLIENT","ADMIN")
+                .antMatchers(HttpMethod.GET).permitAll()
+                .antMatchers(HttpMethod.POST, CLIENT_POST).hasAnyRole("CLIENT")
                 .anyRequest().hasAnyRole("ADMIN"); // aqui estamos exigindo que o usuario esteja logado para acessar qualquer outra rota
 
     }
