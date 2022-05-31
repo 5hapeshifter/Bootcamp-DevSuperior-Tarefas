@@ -29,9 +29,6 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     // rota com nivel de acesso
     private static final String[] CLIENT_POST = {"/events/**"};
 
-    private static final String[] ADMIN_POST = {"/events/**", "/cities/**"};
-
-
     // configuracao do token store, passamos o nosso bean para ele ser decodificado e analisado, verificar a validade
     @Override
     public void configure(ResourceServerSecurityConfigurer resources) throws Exception {

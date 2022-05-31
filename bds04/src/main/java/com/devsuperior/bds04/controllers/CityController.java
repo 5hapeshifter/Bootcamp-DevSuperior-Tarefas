@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -30,7 +31,7 @@ public class CityController {
     }
 
     @PostMapping
-    public ResponseEntity<CityDTO> insertCity(@RequestBody CityDTO dto) {
+    public ResponseEntity<CityDTO> insertCity(@Valid @RequestBody CityDTO dto) {
         var entity = service.save(dto);
         return ResponseEntity.status(HttpStatus.CREATED).body(entity);
     }

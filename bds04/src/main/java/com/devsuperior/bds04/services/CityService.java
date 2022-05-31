@@ -3,7 +3,6 @@ package com.devsuperior.bds04.services;
 import com.devsuperior.bds04.dto.CityDTO;
 import com.devsuperior.bds04.entities.City;
 import com.devsuperior.bds04.repositories.CityRepository;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -11,8 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.springframework.data.domain.Sort.Direction.ASC;
 
 @Service
 public class CityService {
@@ -36,7 +33,4 @@ public class CityService {
         var entity = repository.save(new City(dto));
         return new CityDTO(entity);
     }
-
-
-
 }
