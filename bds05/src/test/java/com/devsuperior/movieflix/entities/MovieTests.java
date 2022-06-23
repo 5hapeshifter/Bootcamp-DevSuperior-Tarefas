@@ -11,7 +11,7 @@ public class MovieTests {
 		Movie entity = new Movie();
 		entity.setId(1L);
 		entity.setTitle("Title");
-		entity.setSubTitle("Subtitle");
+		entity.setSubtitle("Subtitle");
 		entity.setSynopsis("Synopsis");
 		entity.setYear(2021);
 		entity.setImgUrl("https://imgurl.com/img.png");
@@ -19,7 +19,7 @@ public class MovieTests {
 	
 		Assertions.assertNotNull(entity.getId());
 		Assertions.assertNotNull(entity.getTitle());
-		Assertions.assertNotNull(entity.getSubTitle());
+		Assertions.assertNotNull(entity.getSubtitle());
 		Assertions.assertNotNull(entity.getSynopsis());
 		Assertions.assertNotNull(entity.getYear());
 		Assertions.assertNotNull(entity.getImgUrl());

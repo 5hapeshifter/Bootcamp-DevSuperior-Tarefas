@@ -26,9 +26,6 @@ public class RsourceServerConfig extends ResourceServerConfigurerAdapter {
     // rota que sera publica para acessar
     private static final String[] PUBLIC = {"/oauth/token", "/h2-console/**"};
 
-    // rota com nivel de acesso
-    private static final String[] VISITOR_GET = {"/movies/**", "/genres/**", "/reviews/**"};
-
     // configuracao do token store, passamos o nosso bean para ele ser decodificado e analisado, verificar a validade
     @Override
     public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
@@ -47,8 +44,7 @@ public class RsourceServerConfig extends ResourceServerConfigurerAdapter {
         // Definimos liberado td o que e publico e o restante precisa de autenticacao
         http.authorizeRequests()
                 .antMatchers(PUBLIC).permitAll()
-                .antMatchers(HttpMethod.GET, VISITOR_GET).hasAnyRole("VISITOR", "MEMBER")
-                .anyRequest().hasAnyRole("MEMBER"); // aqui estamos exigindo que o usuario esteja logado para acessar qualquer outra rota
+                .anyRequest().authenticated();
 
     }
 }

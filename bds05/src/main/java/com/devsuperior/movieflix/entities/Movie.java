@@ -2,6 +2,7 @@ package com.devsuperior.movieflix.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -13,7 +14,7 @@ public class Movie implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
-    private String subTitle;
+    private String subtitle;
     private Integer year;
     private String imgUrl;
     private String synopsis;
@@ -23,7 +24,7 @@ public class Movie implements Serializable {
     private Genre genre;
 
     @OneToMany(mappedBy = "movie")
-    private Set<Review> reviews;
+    private Set<Review> reviews = new HashSet<>();
 
     public Movie() {
     }
@@ -31,7 +32,7 @@ public class Movie implements Serializable {
     public Movie(Long id, String title, String subtitle, Integer year, String imgUrl, String synopsis) {
         this.id = id;
         this.title = title;
-        this.subTitle = subtitle;
+        this.subtitle = subtitle;
         this.year = year;
         this.imgUrl = imgUrl;
         this.synopsis = synopsis;
@@ -53,12 +54,12 @@ public class Movie implements Serializable {
         this.title = title;
     }
 
-    public String getSubTitle() {
-        return subTitle;
+    public String getSubtitle() {
+        return subtitle;
     }
 
-    public void setSubTitle(String subTitle) {
-        this.subTitle = subTitle;
+    public void setSubtitle(String subTitle) {
+        this.subtitle = subTitle;
     }
 
     public Integer getYear() {

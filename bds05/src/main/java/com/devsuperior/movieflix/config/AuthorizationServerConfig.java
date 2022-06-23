@@ -1,5 +1,6 @@
 package com.devsuperior.movieflix.config;
 
+import com.devsuperior.movieflix.components.JwtTokenEnhancer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
@@ -43,6 +44,9 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     private AuthenticationManager authenticationManager;
 
     @Autowired
+    private JwtTokenEnhancer tokenEnhancer;
+
+    @Autowired
     private UserDetailsService userDetailsService;
 
     @Override
@@ -69,6 +73,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
         // adicionando informacoes adicionais no token
         TokenEnhancerChain chain = new TokenEnhancerChain();
+        chain.setTokenEnhancers(Arrays.asList(accessTokenConverter, tokenEnhancer));
 
         endpoints.authenticationManager(authenticationManager)
                 .tokenStore(tokenStore)

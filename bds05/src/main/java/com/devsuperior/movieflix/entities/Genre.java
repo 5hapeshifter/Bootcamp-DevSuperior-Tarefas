@@ -2,6 +2,7 @@ package com.devsuperior.movieflix.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -15,7 +16,7 @@ public class Genre implements Serializable {
     private String name;
 
     @OneToMany(mappedBy = "genre")
-    private Set<Movie> movies;
+    private Set<Movie> movies = new HashSet<>();
 
     public Genre() {
     }
